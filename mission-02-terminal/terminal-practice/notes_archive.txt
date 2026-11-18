@@ -1,0 +1,2 @@
+First line: Practising safe Terminal file edits.
+Second line: Appended without erasing the first line.

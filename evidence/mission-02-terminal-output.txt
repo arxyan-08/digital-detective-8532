@@ -1,0 +1,46 @@
+# Mission 2 — Privacy-Safe Terminal Evidence
+# (Computer username replaced with [redacted])
+
+$ pwd
+/Users/[redacted]/digital-detective-8532
+
+$ ls
+README.md                   mission-04-programs
+evidence                    mission-05-numbers-data
+mission-00-setup            mission-06-git-github
+mission-01-computer-basics  mission-07-networking
+mission-02-terminal         mission-08-final-report
+mission-03-operating-system
+
+$ cd mission-02-terminal/terminal-practice
+$ cat notes.txt
+First line: Practising safe Terminal file edits.
+Second line: Appended without erasing the first line.
+
+$ ls
+notes.txt          notes_archive.txt  sample.txt
+
+$ ls -lah
+total 16
+drwxr-xr-x@ 5 [redacted]  staff   160B Nov 18 09:54 .
+drwxr-xr-x@ 4 [redacted]  staff   128B Nov 18 09:54 ..
+-rw-r--r--@ 1 [redacted]  staff   103B Nov 18 09:54 notes.txt
+-rw-r--r--@ 1 [redacted]  staff   103B Nov 18 09:54 notes_archive.txt
+-rw-r--r--@ 1 [redacted]  staff     0B Nov 18 09:54 sample.txt
+
+$ ls -la | head -n 4
+total 16
+drwxr-xr-x@ 5 [redacted]  staff  160 Nov 18 09:54 .
+drwxr-xr-x@ 4 [redacted]  staff  128 Nov 18 09:54 ..
+-rw-r--r--@ 1 [redacted]  staff  103 Nov 18 09:54 notes.txt
+
+$ brew --version
+Homebrew 7.0.9
+
+$ brew list --formula | head -n 5
+ca-certificates
+cowsay
+dav1d
+ffmpeg
+gettext
+(22 formulae managed in total)
