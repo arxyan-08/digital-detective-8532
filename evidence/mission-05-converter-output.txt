@@ -1,0 +1,45 @@
+# Mission 5 — Python Verification & Number Converter Test Outputs
+
+$ python3 -q
+>>> bin(13)
+'0b1101'
+>>> bin(25)
+'0b11001'
+>>> int('1010', 2)
+10
+>>> int('1101', 2)
+13
+>>> int('A', 16)
+10
+>>> int('1F', 16)
+31
+>>> hex(int('1111', 2))
+'0xf'
+>>> ord('A')
+65
+>>> ord('a')
+97
+
+$ python3 number_converter.py
+Enter a decimal integer: 13
+Decimal:     13
+Binary:      0b1101 (without prefix: 1101)
+Hexadecimal: 0xd (without prefix: D)
+
+$ python3 number_converter.py
+Enter a decimal integer: 25
+Decimal:     25
+Binary:      0b11001 (without prefix: 11001)
+Hexadecimal: 0x19 (without prefix: 19)
+
+$ python3 number_converter.py
+Enter a decimal integer: 42
+Decimal:     42
+Binary:      0b101010 (without prefix: 101010)
+Hexadecimal: 0x2a (without prefix: 2A)
+
+$ python3 number_converter.py
+Enter a decimal integer: 255
+Decimal:     255
+Binary:      0b11111111 (without prefix: 11111111)
+Hexadecimal: 0xff (without prefix: FF)
