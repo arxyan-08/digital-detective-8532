@@ -1,0 +1,30 @@
+# Mission 6 — Git Workflow & Branching Evidence
+
+$ git switch -c update-about
+Switched to a new branch 'update-about'
+
+$ git status
+On branch update-about
+Changes not staged for commit:
+	modified:   README.md
+
+$ git add README.md
+$ git commit -m "Add My Learning section to root README"
+[update-about e5308e3] Add My Learning section to root README
+ 1 file changed, 6 insertions(+)
+
+$ git log --oneline --decorate -n 7
+e5308e3 (HEAD -> update-about) Add My Learning section to root README
+3834ee0 (main) Build number converter and practise data representation
+8982026 Compare compilers and interpreters
+8f44f5d Document operating system and file management
+5807d11 Complete Terminal and file management mission
+22ff929 Complete computer basics and IPOS mission
+4b94828 Set up Digital Detective mission structure
+
+$ git switch main
+Switched to branch 'main'
+
+$ git branch
+* main
+  update-about
