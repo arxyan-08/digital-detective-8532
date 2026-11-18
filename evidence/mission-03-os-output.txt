@@ -1,0 +1,36 @@
+# Mission 3 — Privacy-Safe Operating System Evidence
+# (Computer username and identifying host details replaced with [redacted])
+
+$ sw_vers
+ProductName:    macOS
+ProductVersion: 27.2.1
+BuildVersion:   26B131
+
+$ uname -srm
+Darwin 27.2.0 arm64
+
+$ whoami
+[redacted]
+
+$ df -h /
+Filesystem      Size   Used  Avail Capacity iused ifree %iused  Mounted on
+/dev/disk3s1s1  460Gi  13Gi  345Gi       4%  487k  3.6G     0%  /
+
+$ top -l 1 -n 5 | head -n 10
+Processes: 825 total, 3 running, 822 sleeping, 3449 threads
+Load Avg: 1.89, 2.15, 2.45
+CPU usage: 5.52% user, 12.6% sys, 82.41% idle
+PhysMem: 15G used (2162M wired, 2294M compressor), 321M unused.
+
+$ ps -eo pid,comm | head -n 8
+  PID COMM
+    1 /sbin/launchd
+  536 /usr/libexec/logd
+  537 /usr/libexec/centaurid
+  538 /usr/libexec/smd
+  539 /usr/libexec/UserEventAgent
+  541 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd
+  546 /usr/sbin/systemstats
+
+$ ls -l mission-02-terminal/terminal-practice/notes.txt
+-rw-r--r--@ 1 [redacted]  staff  103 Nov 18 09:54 mission-02-terminal/terminal-practice/notes.txt
