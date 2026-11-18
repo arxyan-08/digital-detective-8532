@@ -21,3 +21,9 @@
 
 ## Supporting Folder
 - [evidence/](evidence/README.md) — Privacy-safe command outputs grouped by mission.
+
+## My Learning
+- **Working confidently in the Terminal:** I learned how commands like `pwd`, `ls -lah`, `cp`, `mv`, redirection (`>` vs. `>>`), and pipes (`|`) let me manage files precisely without leaving the command line.
+- **Understanding what the OS does behind the scenes:** Inspecting processes, PIDs, storage usage, and `rwx` permissions showed how macOS coordinates hardware, memory, and file security across hundreds of background tasks.
+- **How computers represent numbers and text:** Converting between decimal, binary, and hexadecimal by hand—and verifying those conversions in Python with `bin()`, `hex()`, and `ord()`—made binary data representation and UTF-8/ASCII encoding concrete.
+
