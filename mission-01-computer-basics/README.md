@@ -1,69 +1,60 @@
 # Mission 1 — Know Your Computer
 
 ## 1. Task / objective
-Explain how a computer receives input, processes data, produces output, and stores results using the IPOS model; classify real hardware and software items I use every day; and identify computer-based systems in everyday life beyond laptops and phones.
+Understand how a computer takes in data, works on it, shows results, and saves things — this is called the IPOS model. Also identify hardware vs software items I actually use, and find computer-based systems in everyday life.
 
 ## 2. Work completed
 
-### Task 1.1 — Trace one activity using IPOS
-**Chosen activity:** Typing, spell-checking, and saving a study summary document in a text editor.
+### Task 1.1 — Tracing an activity using IPOS
+I picked **typing and saving a document** as my activity.
 
-| Stage | What happens in your example? | Possible hardware / component |
+| Stage | What happens | Hardware involved |
 | --- | --- | --- |
-| **Input** | I press keys to type my study notes, click buttons to format headings, and press `Command + S` when I want to save the document. | Keyboard and trackpad / mouse |
-| **Processing** | The processor turns each keystroke into character codes, holds the active text in RAM, checks spelling and formatting rules, and prepares the file data for saving. | CPU (processor) and RAM (memory) |
-| **Output** | The typed characters, bold headings, and spelling underlines appear immediately on the screen, and a brief save confirmation shows in the editor window. | Display / monitor (and speakers if a notification sound plays) |
-| **Storage** | When I save, the file is written permanently from temporary RAM into a saved `.md` or `.txt` file on disk so it remains available after restarting the computer. | Internal SSD (and optionally GitHub / cloud storage when backed up) |
+| **Input** | I press keys on my keyboard to type notes, and hit `Cmd+S` to save | Keyboard, trackpad |
+| **Processing** | The CPU converts each keystroke into character codes, holds the text in RAM, and checks spelling | CPU and RAM |
+| **Output** | The letters appear on my screen in real time, and a save confirmation pops up | Display (and speakers if there's a notification sound) |
+| **Storage** | The file gets written from temporary RAM to a permanent file on my SSD | Internal SSD |
 
-**How the activity moves through IPOS (with extra steps):**
-1. **Input -> Processing:** Pressing a key sends an electrical signal to the CPU, which converts it into digital data stored temporarily in RAM.
-2. **Processing -> Output:** The editor program and graphics hardware immediately draw the new letters on the screen so I can see what I typed in real time.
-3. **Second Input -> Processing -> Storage:** Pressing `Command + S` is another input; the CPU packages the current document from RAM and instructs the SSD controller to save those bytes permanently to a file inside my folder.
-4. **Feedback Output:** The editor updates the window title (removing the "unsaved" dot) on the screen to confirm the file is safely stored.
+The flow is basically: keyboard sends signals → CPU processes them in RAM → screen shows the result → SSD saves it permanently. When I hit save, that's actually another input that triggers the CPU to write from RAM to disk.
 
----
+### Task 1.2 — Hardware and software I use
 
-### Task 1.2 — Identify hardware and software
-
-| Item / software name | Hardware or software? | Software type (if applicable) | Purpose |
+| Item | Hardware or software? | Software type | What I use it for |
 | --- | --- | --- | --- |
-| Built-in keyboard | Hardware | Not applicable | Sends typed letters, numbers, and shortcuts into the computer. |
-| Trackpad | Hardware | Not applicable | Controls the on-screen pointer for clicking, scrolling, and selecting items. |
-| Display screen | Hardware | Not applicable | Visually shows the desktop, text, apps, and command outputs. |
-| Solid-State Drive (SSD) | Hardware | Not applicable | Permanently stores the operating system, applications, and personal files even when powered off. |
-| Processor (CPU) | Hardware | Not applicable | Performs calculations, runs instructions, and coordinates all tasks. |
-| macOS | Software | Operating system software | Manages hardware resources, memory, files, security, and lets other programs run. |
-| Visual Studio Code (VS Code) | Software | Application software | Used to write, edit, and organize code and Markdown documents. |
-| Web browser (Safari / Chrome) | Software | Application software | Used to access websites, documentation, and GitHub. |
-| Activity Monitor | Software | Utility software | Monitors running processes, CPU usage, and memory consumption to help diagnose slowdowns. |
-| Disk Utility | Software | Utility software | Checks disk health, manages storage volumes, and repairs drive errors. |
+| Built-in keyboard | Hardware | — | Typing text and shortcuts |
+| Trackpad | Hardware | — | Moving the cursor, clicking, scrolling |
+| Display | Hardware | — | Seeing everything on screen |
+| SSD | Hardware | — | Storing files, apps, and the OS permanently |
+| macOS | Software | Operating system | Manages the whole computer — memory, files, security, running apps |
+| VS Code | Software | Application | Writing and editing code |
+| Safari / Chrome | Software | Application | Browsing the web and using GitHub |
+| Activity Monitor | Software | Utility | Checking which apps are using CPU and memory |
 
----
+The distinction that helped me: **operating system software** runs the whole machine, **application software** is stuff I open to do specific tasks, and **utility software** is for maintenance and monitoring.
 
-### Task 1.3 — Computer systems around you
+### Task 1.3 — Computer systems around me
 
 | System | Main purpose | One input | One output |
 | --- | --- | --- | --- |
-| **Automated Teller Machine (ATM)** | Allows bank customers to withdraw cash, check balances, or transfer money securely without a teller. | Inserting a debit card and entering a PIN on the keypad. | Dispensing banknotes and displaying the updated balance on the screen (or printing a receipt). |
-| **Metro Ticket Vending Machine** | Issues travel tickets or recharges smart cards for commuters at transit stations. | Selecting the destination station on the touchscreen and tapping a payment card or inserting cash. | Printing a QR paper ticket / recharging the smart card and showing confirmation on the screen. |
-| **Automated Traffic Signal Controller** | Controls road intersections safely by timing green, yellow, and red lights to manage traffic flow. | Vehicle presence detected by road sensors or a pedestrian pressing the crosswalk button. | Changing the traffic lights and pedestrian walk/don't-walk signs. |
+| ATM | Withdraw cash or check balance | Inserting debit card and entering PIN | Dispensing cash and showing balance on screen |
+| Metro ticket machine | Buy travel tickets | Selecting destination on touchscreen | Printing the ticket |
+| Traffic signal controller | Manage traffic flow at intersections | Sensors detecting vehicles on the road | Changing the traffic lights |
 
 ## 3. Commands / tools used
-- **Text editor / Markdown:** Used to organize the IPOS trace and classification tables clearly.
-- **Git (`git status`, `git add`, `git commit`):** Used to track and commit only the completed Mission 1 documentation.
+Just my text editor for writing the tables, and `git add` / `git commit` to save the work.
 
 ## 4. My understanding
-Every computer—whether a laptop, an ATM, or a traffic controller—follows the same core **IPOS (Input, Processing, Output, Storage)** cycle. Hardware provides the physical parts (like the keyboard, CPU, screen, and SSD), while software gives those parts instructions. Software itself has distinct roles: the **operating system** manages the whole machine, **application software** helps the user complete everyday tasks like coding or browsing, and **utility software** keeps the computer healthy and organized. Recognizing that everyday devices around us are also specialized computer systems makes it easier to understand how inputs turn into useful real-world actions.
+The IPOS cycle is everywhere — not just in laptops but also in ATMs, traffic lights, and ticket machines. They all take some kind of input, process it, produce an output, and store data. The hardware gives the physical parts, and software gives those parts instructions on what to do. I found it interesting that even something as "dumb" as a traffic light is actually a computer running the IPOS loop.
 
 ## 5. Difficulties faced
-Distinguishing between **operating system software** and **utility software** took a moment of thought because macOS ships with built-in utilities like Activity Monitor and Disk Utility.
+I got a bit confused between utility software and operating system software at first, since things like Activity Monitor and Disk Utility come pre-installed with macOS.
 
 ## 6. How I resolved them
-I separated the core role of each tool: macOS itself coordinates hardware and runs all programs (operating system software), whereas Activity Monitor and Disk Utility focus specifically on monitoring and maintaining the system (utility software).
+I thought about it this way: macOS itself is what makes everything run — it manages memory, processes, hardware. But Activity Monitor is just a monitoring tool that sits on top of macOS. It doesn't manage resources, it just lets you *look at* them. That's what makes it a utility.
 
 ## 7. Evidence / files
-- [mission-01-computer-basics/README.md](README.md) — Contains all three completed tables (Tasks 1.1, 1.2, and 1.3) and the IPOS flow explanation.
+- [mission-01-computer-basics/README.md](README.md) — All three tables and explanations
 
 ## 8. Commit details
-- **Commit message:** `Complete computer basics and IPOS mission`
-- **Push status:** Committed on `main` (staged and committed separately from Mission 0; ready to push to GitHub).
+- **Message:** `Complete computer basics and IPOS mission`
+- Committed on `main` and pushed to GitHub.

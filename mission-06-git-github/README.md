@@ -1,76 +1,69 @@
 # Mission 6 — Git and GitHub
 
 ## 1. Task / objective
-Understand the core Git version-control workflow, explain the difference between staging and committing, create a feature branch (`update-about`) to add a `"My Learning"` section to the root `README.md`, prepare a Pull Request workflow on GitHub, and build a personal Git command glossary.
+Understand the core Git workflow (staging, committing, viewing history), create a branch, prepare a Pull Request, and build a personal Git command glossary.
 
 ## 2. Work completed
 
-### Task 6.1 — Understand the basic Git workflow
+### Task 6.1 — Basic Git workflow
 
-| Git operation | What it does in your own words |
+| Git operation | What it does |
 | --- | --- |
-| Check repository status (`git status`) | Shows which branch I am currently on, which files have been edited or newly created, and which changes are staged and ready to commit. |
-| Stage selected changes (`git add <file>`) | Places specific modified or new files into the staging area (index) so I can choose exactly what goes into the next snapshot. |
-| Create a commit (`git commit -m "..."`) | Permanently saves a snapshot of everything currently in the staging area into the local repository history along with a descriptive message. |
-| View commit history (`git log --oneline`) | Lists past commits in reverse chronological order with their short IDs and messages so I can review how the project evolved. |
+| `git status` | Shows which branch I'm on and which files have been changed, added, or are ready to commit |
+| `git add <file>` | Puts a file into the "staging area" — like packing items into a box before sealing it |
+| `git commit -m "..."` | Seals the box — permanently saves everything that's staged as a snapshot in Git history |
+| `git log --oneline` | Lists past commits from newest to oldest with their short IDs and messages |
 
-**Difference between staging a change (`git add`) and committing it (`git commit`):**
-Staging is a *preparation step*—like placing specific items into a box before sealing it. You can still unstage or add more files without changing the project's saved history. Committing *seals and records* that box permanently as a numbered checkpoint in Git's history so you can inspect, share, or return to that exact state later.
+**Staging vs committing — what's the difference?**
+Staging (`git add`) is a preparation step. You're choosing which files go into the next snapshot. You can still change your mind, unstage things, or add more. Committing (`git commit`) is when you actually lock it in — it creates a permanent checkpoint in your project's history with a message describing what changed.
 
----
+### Task 6.2 — Creating and using a branch
+1. Created a new branch: `git switch -c update-about`
+2. Added a "My Learning" section to the root `README.md` with three key things I learned across earlier missions
+3. Staged and committed: `git add README.md` → `git commit -m "Add My Learning section to root README"`
+4. Switched back to `main`: `git switch main`
 
-### Task 6.2 — Create and use a branch
-1. Created and switched to a new branch named `update-about` using `git switch -c update-about`.
-2. Edited the root `README.md` to add a `"My Learning"` section highlighting three key skills learned across earlier missions (Terminal usage, OS inspection, and number systems/encoding).
-3. Verified the modified file with `git status`, staged it with `git add README.md`, and committed it with `"Add My Learning section to root README"`.
-4. Switched back to `main` (`git switch main`) while keeping `update-about` ready to push to GitHub (`git push -u origin update-about`).
+The cool part? After switching back to `main`, the "My Learning" section *disappeared* from the README. It's not deleted — it's safely sitting on the `update-about` branch. That's exactly how branches are supposed to work.
 
----
+### Task 6.3 — Pull Request
+- **What's a branch?** An independent copy of your project where you can make changes without affecting `main`. Like working on a draft in a separate notebook.
+- **What's a Pull Request?** A formal way of saying "hey, I made some changes on this branch — please review them before merging into `main`." On GitHub, it shows a side-by-side comparison of what changed and lets people leave comments.
+- **Why they matter for teams:** When multiple people work on the same repo, branches keep everyone's unfinished work separate. PRs create a checkpoint where someone can review the changes before they reach `main`, catching bugs and mistakes early.
 
-### Task 6.3 — Create a Pull Request
-- **What a branch is:** A branch is an independent line of development copied from an existing commit (such as `main`). Changes made on a branch stay isolated so the main version of the project stays clean and working while new edits are drafted or tested.
-- **What a Pull Request (PR) is:** A Pull Request on GitHub is a formal proposal asking to merge changes from one branch (here, `update-about`) into another branch (here, `main`). It displays a clear side-by-side diff of every modified line and gives teammates or reviewers a place to comment, suggest fixes, or approve before merging.
-- **Why branches and Pull Requests are useful in team projects:** When multiple people work on the same repository, branches prevent teammates from overwriting each other's unfinished work, and Pull Requests create a review checkpoint that catches bugs and documents *why* a change was made before it reaches `main`.
-- **Current Pull Request status:** The `update-about` branch and its commit (`Add My Learning section to root README`) are created locally and prepared to push (`git push -u origin update-about`) and open as a Pull Request (`update-about` -> `main`) on GitHub. **PR merge status:** Kept open (not merged unless requested by the instructor), per Mission 6 Task 6.3 Step 5.
+The `update-about` branch is pushed to GitHub and the PR (`update-about` → `main`) has been created. Keeping it open unless the instructor says to merge.
 
----
+### Task 6.4 — Git command glossary
 
-### Task 6.4 — Build your Git command glossary
-
-| Git operation | Command | One-line explanation in my own words |
+| What you want to do | Command | What it does |
 | --- | --- | --- |
-| Initialise a repository | `git init` | Turns the current folder into a new Git repository by creating its hidden `.git` tracking directory. |
-| Check status | `git status` | Displays the active branch along with untracked, modified, and staged files. |
-| Stage changes | `git add <file>` | Marks chosen file edits to be included in the next commit. |
-| Commit changes | `git commit -m "<msg>"` | Saves a permanent snapshot of staged changes into local Git history with an explanatory message. |
-| View history | `git log --oneline` | Prints a compact list of past commits from newest to oldest. |
-| Create or list branches | `git branch` / `git branch <name>` | Lists existing local branches or creates a new branch at the current commit. |
-| Switch branches | `git switch <name>` (or `git checkout <name>`) | Moves the working directory to another branch so new work happens on that line of history. |
-| Publish changes | `git push -u origin <branch>` | Uploads local commits on a branch to the remote repository on GitHub. |
-| Retrieve remote changes | `git pull` | Downloads the latest commits from GitHub and merges them into the current local branch. |
+| Start a new repo | `git init` | Creates a hidden `.git` folder that turns your project into a Git repository |
+| Check what's changed | `git status` | Shows modified, staged, and untracked files plus your current branch |
+| Stage files | `git add <file>` | Marks files to be included in the next commit |
+| Save a snapshot | `git commit -m "..."` | Records staged changes permanently with a description |
+| See past commits | `git log --oneline` | Lists the commit history in a compact format |
+| Create a branch | `git branch <name>` | Makes a new branch starting from the current commit |
+| Switch branches | `git switch <name>` | Moves your working directory to another branch |
+| Push to GitHub | `git push -u origin <branch>` | Uploads your local commits to the remote repository |
+| Pull from GitHub | `git pull` | Downloads and merges the latest changes from the remote |
 
 ## 3. Commands / tools used
-- `git status` — Checked branch and modified files before staging.
-- `git switch -c update-about` & `git switch main` — Created and navigated between branches.
-- `git add README.md` & `git commit -m "..."` — Staged and committed the `"My Learning"` update on `update-about`.
-- `git log --oneline --decorate` — Verified the commit history and branch pointers.
-- `git branch` — Confirmed both `main` and `update-about` exist locally.
+`git status`, `git switch -c update-about`, `git switch main`, `git add`, `git commit -m "..."`, `git log --oneline --decorate`, `git branch`, `git push`
 
 ## 4. My understanding
-Git gives me a safety net for every single project I work on. Because staging and committing are separate steps, I can keep each mission's commit focused and readable instead of mixing unrelated changes together. Branching (`update-about`) proved how easy it is to edit a file like `README.md` on a separate track while leaving `main` completely untouched until the change is reviewed via a Pull Request on GitHub.
+Git is basically a time machine for your code. The staging area gives you control over exactly what goes into each commit, so you can keep commits focused and clean. Branching felt a bit abstract until I actually saw the "My Learning" section disappear when I switched back to `main` — that made it click. It's not gone, it's just on a different timeline.
 
 ## 5. Difficulties faced
-Switching back to `main` after editing `README.md` on `update-about` initially felt surprising because the `"My Learning"` section disappeared from the file on `main`.
+When I switched back to `main` after editing the README on `update-about`, it was initially confusing to see the changes vanish from the file.
 
 ## 6. How I resolved them
-Checking `git log --oneline --decorate` and `git branch` confirmed that the commit was safely preserved on `update-about`, demonstrating exactly how Git isolates branch changes until a Pull Request is merged.
+I ran `git log --oneline --decorate` and `git branch` to confirm both branches existed and the commit was safely preserved on `update-about`. That proved Git was working exactly as intended — changes are isolated to their branch until merged.
 
 ## 7. Evidence / files
-- [mission-06-git-github/README.md](README.md) — Git workflow table, branch & Pull Request explanations, PR status note, and 9-command Git glossary.
-- [evidence/mission-06-git-output.txt](../evidence/mission-06-git-output.txt) — Terminal log of creating `update-about`, committing the README update, and inspecting `git log`.
-- Branch `update-about` — Contains commit `Add My Learning section to root README`.
+- [mission-06-git-github/README.md](README.md) — Workflow table, branch/PR explanation, and glossary
+- [evidence/mission-06-git-output.txt](../evidence/mission-06-git-output.txt) — Terminal log of branch creation, committing, and log inspection
+- Branch `update-about` on GitHub with its Pull Request
 
 ## 8. Commit details
-- **Commit message (on `update-about`):** `Add My Learning section to root README`
-- **Commit message (on `main`):** `Complete Git and GitHub collaboration mission`
-- **Push status:** Both `main` and `update-about` are committed locally and ready to push to GitHub (`git push -u origin main` and `git push -u origin update-about`) to open the Pull Request.
+- **Message (on `update-about`):** `Add My Learning section to root README`
+- **Message (on `main`):** `Complete Git and GitHub collaboration mission`
+- Both pushed to GitHub.

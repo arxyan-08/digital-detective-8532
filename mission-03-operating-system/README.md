@@ -1,91 +1,77 @@
 # Mission 3 — Understand the Operating System
 
 ## 1. Task / objective
-Investigate my operating system environment, account identity, storage space, running processes, file paths, and file permissions using Terminal, and explain the core responsibilities of an operating system in my own words.
+Explore what operating system I'm running, check who's logged in, see how much storage I have, look at running processes, understand file paths and permissions, and explain what the OS actually does.
 
 ## 2. Work completed
 
-### Task 3.1 — Explore your operating system
+### Task 3.1 — Exploring my OS
 
-| Information explored | What it tells you | Your observation (privacy-safe) |
+| What I checked | How | What I found |
 | --- | --- | --- |
-| Operating system / system details (`sw_vers`, `uname -srm`) | Identifies the operating system name, version, kernel name, and processor architecture. | Running **macOS 27.2.1** on the **Darwin 27.2.0** kernel with **arm64** (Apple Silicon) architecture. |
-| Current account identity (`whoami`) | Shows which user account is currently logged in and owns new files or Terminal commands. | Returned `[redacted]`, confirming commands run under my standard non-root user account. |
-| Available and used storage (`df -h /`) | Displays total disk capacity, space currently used, and free space available in human-readable units. | Root volume total size `460Gi`, system volume `13Gi` used, and `345Gi` available. |
-| System activity snapshot (`top -l 1 -n 5`) | Gives a live summary of total processes, CPU load, and physical RAM utilization. | Showed 825 total processes (3 running, 822 sleeping), ~5.5% user CPU / ~12.6% system CPU / ~82.4% idle, and 15G physical memory in active/cached use. |
+| OS version | `sw_vers` and `uname -srm` | macOS 27.2.1, Darwin kernel 27.2.0, arm64 (Apple Silicon) |
+| Who's logged in | `whoami` | `[redacted]` — my standard user account |
+| Storage | `df -h /` | 460 GB total drive, 345 GB still free |
+| System activity | `top -l 1 -n 5` | 825 processes running, ~82% CPU idle, 15 GB RAM in use |
 
----
+What surprised me here was the **825 processes** number. I only had a few windows open, but hundreds of things were running in the background — system daemons, kernel tasks, services I'd never heard of. macOS is doing a LOT behind the scenes.
 
-### Task 3.2 — Understand processes
-Using `ps -eo pid,comm` and `top -l 1 -n 5`, I viewed active user applications and background system services along with their process identifiers.
+### Task 3.2 — Understanding processes
+I used `ps -eo pid,comm` to list running processes:
 
-- **What is a process?** A process is an active instance of a program that is currently loaded in memory and running (or waiting to run) on the computer. A saved app on disk is just a file; once you launch it, the OS creates a process for it.
-- **What does the PID column represent?** **PID** stands for **Process Identifier**—a unique positive integer assigned by the operating system to track and manage each running process (for example, `PID 1` on macOS is always `launchd`, the first system process started at boot).
-- **Two examples of processes running on my computer:**
-  1. `launchd` (`PID 1`) — A background macOS system process that starts and manages other system daemons and services.
-  2. `zsh` (Terminal shell) and `com.apple.WebKit` (web browser rendering engine) — User-facing processes that run my shell commands and display web pages.
+- **What is a process?** It's a program that's currently loaded into memory and running (or waiting to run). The app sitting on your disk is just a file — once you launch it, the OS creates a process for it.
+- **What's a PID?** Process Identifier — a unique number the OS assigns to each running process so it can keep track of them. `PID 1` on macOS is always `launchd`, the first thing that starts at boot.
+- **Two examples from my Mac:**
+  1. `launchd` (PID 1) — the system's starter process that launches everything else
+  2. `com.apple.WebKit` — the browser engine rendering web pages in the background
 
----
+### Task 3.3 — Paths and permissions
+**Absolute vs relative paths:**
+- Absolute path starts from `/` (the root): `/Users/[redacted]/digital-detective-8532/mission-02-terminal/terminal-practice/notes.txt`
+- Relative path starts from wherever you are right now: `mission-02-terminal/terminal-practice/notes.txt` (works if I'm already inside the repo folder)
 
-### Task 3.3 — Understand paths and permissions
-- **Navigating between folders:** Starting in `/Users/[redacted]/digital-detective-8532` and running `cd mission-02-terminal/terminal-practice` changed `pwd` to `/Users/[redacted]/digital-detective-8532/mission-02-terminal/terminal-practice`.
-- **Absolute path vs. relative path:**
-  - An **absolute path** starts from the very top root directory `/` and specifies the exact location of a file regardless of which folder you are currently inside.
-    - *Example from my repo:* `/Users/[redacted]/digital-detective-8532/mission-02-terminal/terminal-practice/notes.txt`
-  - A **relative path** starts from your *current working directory* (without a leading `/`), so it is shorter and depends on where you currently are.
-    - *Example from my repo (when inside `digital-detective-8532`):* `mission-02-terminal/terminal-practice/notes.txt`
-- **Permission meanings:**
+Think of absolute paths as a full street address and relative paths as "turn left, second door on the right."
 
-| Permission | Meaning | Example |
+**File permissions:**
+Running `ls -l` on `notes.txt` showed `-rw-r--r--`. Breaking that down:
+- `-` = regular file (not a directory)
+- `rw-` = owner can **read** and **write**, but not execute (makes sense — it's a text file, not a script)
+- `r--` = group can only read
+- `r--` = everyone else can only read
+
+| Permission | What it means | Example |
 | --- | --- | --- |
-| `r` — Read | Allows a file's contents to be viewed (or a folder's file list to be seen). | Opening `notes.txt` with `cat`. |
-| `w` — Write | Allows a file to be modified or saved (or files to be added/deleted inside a folder). | Appending a line to `notes.txt`. |
-| `x` — Execute | Allows a file to be run as a program; on a directory, allows entering/traversing it with `cd`. | Running a script or opening a subfolder. |
+| `r` (Read) | You can view the file's contents | Opening a text file with `cat` |
+| `w` (Write) | You can modify the file | Editing and saving changes |
+| `x` (Execute) | You can run the file as a program | Running a shell script |
 
-- **Owner permission check on my practice file:**
-  Running `ls -l mission-02-terminal/terminal-practice/notes.txt` returned:
-  `-rw-r--r--@ 1 [redacted] staff 103 ... notes.txt`
-  - The first character `-` means it is a regular file (not a directory `d`).
-  - The next three characters (`rw-`) are the **owner permissions**:
-    - `r` -> Owner **can read** the file.
-    - `w` -> Owner **can write/edit** the file.
-    - `-` -> Owner **cannot execute** the file as a program (which makes sense because it is a plain text note, not a script).
-  - No system permissions were modified.
+### Task 3.4 — OS responsibilities
 
----
-
-### Task 3.4 — Explain operating-system responsibilities
-
-| OS responsibility | Your explanation | Example |
+| Responsibility | What it does (my explanation) | Example |
 | --- | --- | --- |
-| **Process management** | Starts, schedules, pauses, and terminates running programs so multiple apps can share the CPU smoothly without freezing the computer. | Switching rapidly between a web browser, VS Code, and Terminal while background services like `fseventsd` keep running. |
-| **Memory management** | Allocates RAM to each running process, prevents programs from overwriting each other's memory, and frees RAM when apps close. | Giving RAM to open browser tabs and compressing or reclaiming memory when tabs are closed. |
-| **Device management** | Communicates with connected hardware using drivers so applications can use devices without knowing low-level hardware details. | Handling input from the built-in keyboard/trackpad or sending audio to Bluetooth headphones. |
-| **File management** | Organizes data into files and directories on storage drives, tracks where bytes live on disk, and enforces naming and hierarchy rules. | Creating folders like `mission-03-operating-system/` and saving `README.md` onto the SSD. |
-| **User interface / shell** | Provides ways for humans to interact with the computer, either graphically (GUI) or through text commands (CLI). | Using macOS Finder windows (GUI) or typing commands inside Terminal running `zsh` (CLI). |
-| **Security and permissions** | Controls user accounts, authentication, and read/write/execute rights so unauthorized users or apps cannot damage protected files. | Restricting system folders so a standard user cannot delete critical OS files without explicit authorization. |
+| Process management | Juggles all running programs so they share the CPU fairly without freezing each other | Switching between browser, VS Code, and Terminal smoothly |
+| Memory management | Gives each app its own chunk of RAM and cleans up when apps close | Freeing RAM when I close browser tabs |
+| Device management | Talks to hardware through drivers so apps don't need to know low-level details | Making my trackpad work or sending audio to Bluetooth headphones |
+| File management | Organizes everything into files and folders on disk | Saving `README.md` into the right mission folder on my SSD |
+| User interface / shell | Gives us ways to interact — either clicking around (GUI) or typing commands (CLI) | Using Finder windows or typing in Terminal |
+| Security and permissions | Controls who can access what, using accounts and `rwx` rules | Preventing a regular user from deleting core system files |
 
 ## 3. Commands / tools used
-- `sw_vers` and `uname -srm` — Checked macOS version, kernel version, and CPU architecture.
-- `whoami` — Checked the active user account name.
-- `df -h /` — Checked disk capacity, used storage, and available free space.
-- `top -l 1 -n 5` — Captured a single non-interactive snapshot of CPU, memory, and process activity.
-- `ps -eo pid,comm` — Listed running processes with their PIDs and command names.
-- `pwd`, `cd`, and `ls -l` — Compared absolute/relative paths and inspected file permissions on `notes.txt`.
+`sw_vers`, `uname -srm`, `whoami`, `df -h /`, `top -l 1 -n 5`, `ps -eo pid,comm`, `pwd`, `cd`, `ls -l`
 
 ## 4. My understanding
-The operating system sits between hardware and applications, acting like a traffic controller and caretaker for the entire computer. Seeing hundreds of background processes running even when I only have a couple of windows open showed how much invisible coordination macOS handles every second. Understanding absolute vs. relative paths makes Terminal navigation much clearer, and reading `rwx` permission strings explains how the OS protects files from accidental or unauthorized changes.
+The OS is like an invisible manager running the show. I never realized how much coordination happens just to keep my laptop working — hundreds of processes being scheduled, memory being allocated and freed, permissions being enforced. The `rwx` permission system clicked for me when I saw that my `notes.txt` had `rw-` for the owner — of course a text file doesn't need execute permission, that's only for scripts and programs.
 
 ## 5. Difficulties faced
-Running plain `top` updates continuously and takes over the Terminal screen until manually quit, and raw outputs from `whoami` and `ls -l` included my personal account username.
+Running `top` without flags took over my whole Terminal screen and kept updating endlessly. Also, every command that showed user info included my actual Mac username.
 
 ## 6. How I resolved them
-Used `top -l 1 -n 5` (one-shot logging mode limited to 5 processes) to capture a clean snapshot cleanly, and redacted my username to `[redacted]` in both the evidence file and this README.
+Used `top -l 1 -n 5` to get a single snapshot instead of a live view, and replaced my username with `[redacted]` in all evidence files.
 
 ## 7. Evidence / files
-- [mission-03-operating-system/README.md](README.md) — OS exploration table, process Q&A, paths and permissions breakdown, and OS responsibilities table.
-- [evidence/mission-03-os-output.txt](../evidence/mission-03-os-output.txt) — Redacted Terminal outputs for `sw_vers`, `uname`, `df`, `top`, `ps`, and `ls -l`.
+- [mission-03-operating-system/README.md](README.md) — All tables and explanations
+- [evidence/mission-03-os-output.txt](../evidence/mission-03-os-output.txt) — Redacted Terminal outputs
 
 ## 8. Commit details
-- **Commit message:** `Document operating system and file management`
-- **Push status:** Committed on `main` (staged and committed separately from Mission 2; ready to push to GitHub).
+- **Message:** `Document operating system and file management`
+- Committed on `main` and pushed to GitHub.
